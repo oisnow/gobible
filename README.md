@@ -4,7 +4,7 @@
 
 ### 测试类
 
-因为一个包中只能有一个人func main，故只有helloword.go 中使用了正常的go文件编写，其他都使用测试类进行练习
+因为一个包中只能有一个人func main，故大部分的练习题都使用测试类进行编写
 ```go
 package main
 
