@@ -15,3 +15,7 @@ func TestEcho(t *testing.T) {
 }
 ```
 
+### 课程练习题
+课程练习题使用ex1_1_test.go 表示章节1中的练习题1.1
+
+
