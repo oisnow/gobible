@@ -7,6 +7,6 @@ import (
 )
 
 func TestHello(t *testing.T) {
-	fmt.Printf("hello word\n")
+	fmt.Printf("hello word!\n")
 	fmt.Printf(os.Args[0])
 }
