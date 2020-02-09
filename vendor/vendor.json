@@ -1,0 +1,12 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "U7B9i/nYGe1CxwgcRTYGmzcTe7k=",
+			"path": "isnow.info/hello/mylib",
+			"revision": ""
+		}
+	],
+	"rootPath": "github.com/gobible"
+}
