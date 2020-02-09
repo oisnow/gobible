@@ -23,7 +23,15 @@ const (
 	PB = 1 << (10 * iota)
 )
 
+var te = `\
+dfag
+fda`
+
+// var rune r1 = '中国'
+
 func main() {
 	fmt.Printf("a:%d,b:%d,c:%d,d:%d,e:%d", a, b, c, d, e)
 	fmt.Println(KB)
+	fmt.Println(te)
+	// fmt.Println(r1)
 }
