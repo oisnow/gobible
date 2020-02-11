@@ -12,7 +12,16 @@ func main() {
 		[2]int{1, 1},
 		[2]int{2, 2},
 	}
-
 	fmt.Println(a)
 	fmt.Println(b)
+
+	fmt.Println("---------------------------------")
+	//多为数组遍历
+	for key, val := range b {
+
+		fmt.Println(key, val)
+		for _, v := range val {
+			fmt.Println(key, v)
+		}
+	}
 }
