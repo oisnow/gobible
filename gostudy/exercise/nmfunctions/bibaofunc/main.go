@@ -23,5 +23,10 @@ func main() {
 	a()
 	b()
 	c()
+	var c []int
+	a := []int{1, 2, 3}
+	fmt.Printf("%T", a)
+	copy(a, c)
+	fmt.Println(a, c)
 
 }
