@@ -30,6 +30,7 @@ func main() {
 			AddBookInfo()
 		case 2:
 			fmt.Println("2.修改书籍信息")
+			UpdateBook()
 		case 3:
 			fmt.Println("所有书籍展示如下:")
 			ShowAllBooks()

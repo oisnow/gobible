@@ -10,10 +10,8 @@ type Book struct {
 	publish bool
 }
 
-//AllBooks 定义所有书籍，使用切片定义
-// var (
-// 	AllBooks []*Book
-// )
+//AllBooks 初始化所有书籍的切片
+var AllBooks = make([]*Book, 0, 200)
 
 //ShowMenu 定义展示菜单函数
 func ShowMenu() {
@@ -36,8 +34,35 @@ func NewBook(title, author string, price float32, publish bool) *Book {
 	}
 }
 
-//AllBooks 初始化所有书籍的切片
-var AllBooks = make([]*Book, 0, 200)
+// UpdateBook 修改书籍书籍函数
+func UpdateBook() {
+	var (
+		title   string
+		author  string
+		price   float32
+		publish bool
+	)
+	fmt.Println("修改书籍信息……")
+	fmt.Print("输入书籍名称:")
+	fmt.Scanln(&title)
+	fmt.Print("输入书籍作者:")
+	fmt.Scanln(&author)
+	fmt.Print("输入书籍价格:")
+	fmt.Scanln(&price)
+	fmt.Print("该书籍是否发布:")
+	fmt.Scanln(&publish)
+	for _, val := range AllBooks {
+		if val.title == title {
+			val.title = title
+			val.author = author
+			val.price = price
+			val.publish = publish
+		}
+		fmt.Println("书库中没有这本书籍")
+		break
+	}
+	return
+}
 
 // AddBookInfo 定义添加书籍函数
 func AddBookInfo() {
