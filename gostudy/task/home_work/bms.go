@@ -45,6 +45,14 @@ func UpdateBook() {
 	fmt.Println("修改书籍信息……")
 	fmt.Print("输入书籍名称:")
 	fmt.Scanln(&title)
+	for _, val := range AllBooks {
+		if val.title != title {
+			goto err
+		}
+		goto update
+	}
+
+update:
 	fmt.Print("输入书籍作者:")
 	fmt.Scanln(&author)
 	fmt.Print("输入书籍价格:")
@@ -58,9 +66,11 @@ func UpdateBook() {
 			val.price = price
 			val.publish = publish
 		}
-		fmt.Println("书库中没有这本书籍")
-		break
+
 	}
+err:
+	fmt.Println("书库中没有该书籍")
+
 	return
 }
 
