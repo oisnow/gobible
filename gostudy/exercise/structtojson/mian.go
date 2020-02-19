@@ -9,28 +9,23 @@ import (
 
 // Person 定义Person结构体
 type Person struct {
-	name string
-	age  int
+	Name string `json:"name"`
+	Age  int    `json:"age"`
 }
 
 // Student 定义Ptudent结构体
 type Student struct {
-	school string
+	School string `json:"school"`
 	Person
 }
 
 func main() {
 	var happy = Student{
-		school: "longhuaerxiao",
+		School: "longhuaerxiao",
 		Person: Person{
-			name: "haochenxi",
-			age:  12,
+			Name: "haochenxi",
+			Age:  12,
 		},
-	}
-
-	var hao = Person{
-		name: "haoyunpeng",
-		age:  32,
 	}
 
 	fmt.Println(happy)
@@ -40,12 +35,11 @@ func main() {
 	}
 	fmt.Println(v)
 	fmt.Println(string(v))
+	fmt.Printf("%#v \n", string(v))
 
-	fmt.Println(hao)
-	v1, err1 := json.Marshal(hao)
-	if err1 != nil {
-		fmt.Println(err1)
-	}
-	fmt.Println(v1)
-	fmt.Println(string(v1))
+	str := "{\"School\":\"longhuaerxiao\",\"Name\":\"haochenxi\",\"Age\":12}"
+	var Hp = new(Student)
+	json.Unmarshal([]byte(str), Hp)
+	fmt.Println("struct:", *Hp)
+	fmt.Printf("%T\n", *Hp)
 }
