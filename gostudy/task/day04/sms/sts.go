@@ -19,7 +19,7 @@ type StuMgr struct {
 // var AllStudent = make([]*Student, 0, 200)
 
 //NewStu 初始化stu信息
-func (s *Student) NewStu(name string, age, id int) *Student {
+func NewStu(name string, age, id int) *Student {
 	return &Student{
 		Name: name,
 		Age:  age,
@@ -47,6 +47,10 @@ func (s *StuMgr) AddStu(stu *Student) {
 			fmt.Println("该学生信息已经存在")
 			return
 		}
+	}
+	if stu.Age < 0 || stu.Age < 0 || len(stu.Name) == 0 {
+		fmt.Printf("[ ID:%d,姓名:%s,年龄:%d ] 输入的信息有误，请检查 \n", stu.ID, stu.Name, stu.Age)
+		return
 	}
 	s.AllStudent = append(s.AllStudent, stu)
 	fmt.Printf("[ ID:%d,姓名:%s,年龄:%d ] 已添加到SMS系统 \n", stu.ID, stu.Name, stu.Age)
