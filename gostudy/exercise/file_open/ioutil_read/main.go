@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	filepath := "/Users/haoyunpeng/gowork/src/github.com/gobible/gostudy/exercise/file_open/ttt.txt"
+	filepath := "/Users/haoyunpeng/gowork/src/github.com/gobible/gostudy/exercise/file_op/ttt.txt"
 	file, err := ioutil.ReadFile(filepath)
 	// if err == io.EOF {
 	// 	fmt.Println("文件读取结束")

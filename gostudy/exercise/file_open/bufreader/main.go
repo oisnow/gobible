@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	filepath := "/Users/haoyunpeng/gowork/src/github.com/gobible/gostudy/exercise/file_open/ttt.txt"
+	filepath := "/Users/haoyunpeng/gowork/src/github.com/gobible/gostudy/exercise/file_op/ttt.txt"
 
 	//文件读取
 	file, err := os.Open(filepath)
