@@ -3,6 +3,7 @@ package mylog
 import (
 	"fmt"
 	"os"
+	"time"
 )
 
 // FileLog 文件读写日志类型的结构体
@@ -38,10 +39,24 @@ func (f *FileLog) initLogpath() {
 	f.Logfile = file
 }
 
+// GetTime 获取当前时间并格式化为 2006/01/02 15:04:05
+func GetTime() string {
+	t := time.Now()
+	timestr := t.Format("2006/01/02 15:04:06.000")
+	return timestr
+}
+
 //Debug 记录Debug日志
-func (f *FileLog) Debug(msg string) {
+func (f *FileLog) Debug(format string, arg ...interface{}) {
 	//写日志
 	// 需要丰富日志格式，时间、日志级别，哪一行、哪一个函数
-	f.Logfile.WriteString(msg)
+	// f.Logfile.WriteString(msg)
+	files, funcnames, line := GetCallInfo()
+	// GetCallInfo()
+	fmt.Println("")
+	timenow := GetTime()
+	format = fmt.Sprintf("[时间：%s ,Level：%s 文件名：%s ，方法名：%s ，行号：%d] ,日志内容：%s", timenow, GetLogLevelStr(f.LogLevel), files, funcnames, line, format)
+	fmt.Fprintf(f.Logfile, format, arg...)
+	fmt.Fprintln(f.Logfile)
 	return
 }
