@@ -34,7 +34,6 @@ func (f *FileLog) initLogpath() {
 	if err != nil {
 		// fmt.Println("打开文件错误，错误原因：", err)
 		panic(fmt.Sprintf("open %s file error", filepath))
-		return
 	}
 	f.Logfile = file
 }
@@ -48,11 +47,13 @@ func GetTime() string {
 
 //Debug 记录Debug日志
 func (f *FileLog) Debug(format string, arg ...interface{}) {
+
+	if f.LogLevel > 0 {
+		return
+	}
 	//写日志
 	// 需要丰富日志格式，时间、日志级别，哪一行、哪一个函数
-	// f.Logfile.WriteString(msg)
 	files, funcnames, line := GetCallInfo()
-	// GetCallInfo()
 	fmt.Println("")
 	timenow := GetTime()
 	format = fmt.Sprintf("[时间：%s ,Level：%s 文件名：%s ，方法名：%s ，行号：%d] ,日志内容：%s", timenow, GetLogLevelStr(f.LogLevel), files, funcnames, line, format)

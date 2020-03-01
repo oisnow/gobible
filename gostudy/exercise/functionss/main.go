@@ -1,7 +1,7 @@
 package main
 
 import (
-	mb "github.com/gobible/gobible/gostudy/exercise/mylib"
+	mb "github.com/gobible/gostudy/exercise/mylib"
 )
 
 func main() {

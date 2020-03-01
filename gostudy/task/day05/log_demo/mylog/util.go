@@ -1,7 +1,6 @@
 package mylog
 
 import (
-	"fmt"
 	"path"
 	"runtime"
 )
@@ -15,7 +14,8 @@ func GetCallInfo() (files, funcnames string, line int) {
 	funcname := runtime.FuncForPC(pc).Name()
 	funcnames = path.Base(funcname)
 	files = path.Base(file)
-	fmt.Println(funcname)
-	fmt.Println(file, line, ok)
+	//打印调试
+	// fmt.Println(funcname)
+	// fmt.Println(file, line, ok)
 	return
 }
