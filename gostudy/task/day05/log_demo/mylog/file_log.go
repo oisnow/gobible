@@ -38,7 +38,7 @@ func (f *FileLog) initLogpath() {
 	f.Logfile = file
 }
 
-// GetTime 获取当前时间并格式化为 2006/01/02 15:04:05
+// GetTime 获取当前时间并格式化为 2006/01/02 15:04:05.000
 func GetTime() string {
 	t := time.Now()
 	timestr := t.Format("2006/01/02 15:04:06.000")
