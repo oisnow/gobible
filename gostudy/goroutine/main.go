@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 )
 
@@ -28,6 +29,8 @@ var wg sync.WaitGroup
 func main() {
 
 	defer fmt.Println("all done!")
+
+	runtime.GOMAXPROCS(10)
 
 	for i := 0; i < 20; i++ {
 		wg.Add(1)
