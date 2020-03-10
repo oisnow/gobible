@@ -29,7 +29,11 @@ func main() {
 	fmt.Printf("%#v", conf)
 
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
+	fmt.Println(conf.Filename)
+	fmt.Println(conf.Filepath)
+	fmt.Println(conf.Loglevel)
+	fmt.Println(conf.Maxsize)
+	fmt.Println(reflect.TypeOf(conf.Maxsize))
 }
 
 //Config 是一个日志的配置项目-结构体
