@@ -18,4 +18,5 @@ func GetCallInfo() (files, funcnames string, line int) {
 	// fmt.Println(funcname)
 	// fmt.Println(file, line, ok)
 	return
+
 }
