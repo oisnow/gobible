@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync"
 	"time"
 )
 
@@ -13,6 +14,10 @@ import (
 
 //一个生产者 20个消费者
 
+var chanitem chan *items
+var chanres chan *res
+var wg sync.WaitGroup
+
 // var chanitem = make(chan items)
 
 type items struct {
@@ -21,8 +26,8 @@ type items struct {
 }
 
 type res struct {
-	items
-	sum int32
+	items *items
+	sum   int32
 }
 
 //生产者
@@ -31,7 +36,8 @@ func producer(ch chan *items) {
 	var id int32
 	rand.Seed(time.Now().UnixNano())
 
-	for {
+	for i := 0; i <= 100; i++ {
+		id++
 		tmpitems := &items{
 			id:  id,
 			num: rand.Int31(),
@@ -43,15 +49,17 @@ func producer(ch chan *items) {
 
 //消费者
 func consumer(ch chan *items, chres chan *res) {
-
-	tmpitems := <-ch
-	tmpnum := tmpitems.num
-	tmpsum := calcsum(tmpnum)
-	tmpres := &res{
-		items: *tmpitems,
-		sum:   tmpsum,
+	defer wg.Done()
+	for tmpitems := range ch {
+		tmpnum := tmpitems.num
+		tmpsum := calcsum(tmpnum)
+		tmpres := &res{
+			items: tmpitems,
+			sum:   tmpsum,
+		}
+		chres <- tmpres
+		time.Sleep(time.Millisecond * 100)
 	}
-	chres <- tmpres
 }
 
 func calcsum(num int32) (sum int32) {
@@ -63,12 +71,29 @@ func calcsum(num int32) (sum int32) {
 	return
 }
 
+func strartworker(n int, ch chan *items, chres chan *res) {
+	for i := 0; i < n; i++ {
+		go consumer(ch, chres)
+		// fmt.Println("------------------------")
+	}
+}
+
 //打印结果
-func printres() {
+func printres(res chan *res) {
+	for ret := range res {
+		fmt.Printf("id:%d,num:%d,sum:%d \n", ret.items.id, ret.items.num, ret.sum)
+	}
 
 }
 
 func main() {
-	var a int32 = 12345
-	fmt.Println(calcsum(a))
+
+	chanitem = make(chan *items, 100)
+	chanres = make(chan *res, 100)
+	go producer(chanitem)
+	wg.Add(5)
+	strartworker(5, chanitem, chanres)
+	wg.Wait()
+	// close(chanres)
+	printres(chanres)
 }
