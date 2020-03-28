@@ -36,7 +36,7 @@ func producer(ch chan *items) {
 	var id int32
 	rand.Seed(time.Now().UnixNano())
 
-	for i := 0; i <= 100; i++ {
+	for i := 0; i < 100; i++ {
 		id++
 		tmpitems := &items{
 			id:  id,
@@ -45,14 +45,14 @@ func producer(ch chan *items) {
 		ch <- tmpitems
 
 	}
+	close(ch)
 }
 
 //消费者
 func consumer(ch chan *items, chres chan *res) {
 	defer wg.Done()
 	for tmpitems := range ch {
-		tmpnum := tmpitems.num
-		tmpsum := calcsum(tmpnum)
+		tmpsum := calcsum(tmpitems.num)
 		tmpres := &res{
 			items: tmpitems,
 			sum:   tmpsum,
@@ -80,20 +80,26 @@ func strartworker(n int, ch chan *items, chres chan *res) {
 
 //打印结果
 func printres(res chan *res) {
-	for ret := range res {
-		fmt.Printf("id:%d,num:%d,sum:%d \n", ret.items.id, ret.items.num, ret.sum)
+	for {
+		ret, ok := <-res
+		if !ok {
+			break
+		} else {
+			fmt.Printf("id:%d,num:%d,sum:%d \n", ret.items.id, ret.items.num, ret.sum)
+		}
+
 	}
 
 }
 
 func main() {
 
-	chanitem = make(chan *items, 100)
-	chanres = make(chan *res, 100)
+	chanitem = make(chan *items, 10000)
+	chanres = make(chan *res, 10000)
 	go producer(chanitem)
 	wg.Add(5)
 	strartworker(5, chanitem, chanres)
 	wg.Wait()
-	// close(chanres)
+	close(chanres)
 	printres(chanres)
 }
