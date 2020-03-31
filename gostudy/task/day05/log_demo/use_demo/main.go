@@ -3,12 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
+	"gobible/gostudy/task/day05/log_demo/mylog"
 	"io/ioutil"
 	"reflect"
 	"strconv"
 	"strings"
-
-	"github.com/gobible/gostudy/task/day05/log_demo/mylog"
 )
 
 func main() {

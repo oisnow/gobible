@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/gobible/gostudy/exercise/01package/mypkg"
+	"gobible/gostudy/exercise/01package/mypkg"
 )
 
 func init() {
