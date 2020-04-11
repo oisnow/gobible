@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func makeInt(c chan int) {
 	for i := 0; i < 10; i++ {

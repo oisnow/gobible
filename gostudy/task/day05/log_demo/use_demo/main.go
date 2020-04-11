@@ -11,14 +11,14 @@ import (
 )
 
 func main() {
-	var log = mylog.NewFileLog(mylog.DEBUG, "debug.log", "gostudy/task/day05/log_demo/use_demo/log")
+	var log = mylog.NewFileLog(mylog.DEBUG, "debug.log", "./log")
 	fmt.Println("输入123456的debug日志")
 	log.Debug("输入日志为%d", 123456)
 
 	fmt.Println("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 	var conf = &Config{}
 	// var c = "strs"
-	logconfigpath := "gostudy/task/day05/log_demo/mylog/config/log.conf"
+	logconfigpath := "../mylog/config/log.conf"
 
 	err := ParseConfig(logconfigpath, conf)
 	if err != nil {
