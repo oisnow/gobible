@@ -1,5 +1,6 @@
 {
     "files.autoSave": "afterDelay",
-    "editor.defaultFormatter": "ms-vscode.Go"
+    "editor.defaultFormatter": "ms-vscode.Go",
+    "go.inferGopath": false
   
 }
