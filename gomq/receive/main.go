@@ -7,18 +7,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/Unknwon/goconfig"
+	"github.com/oisnow/gobible/gomq/readconfig"
 
+	"github.com/Unknwon/goconfig"
 	"github.com/go-stomp/stomp"
 )
-
-func getConfigFile(filePath string) (configFile *goconfig.ConfigFile) {
-	cfg, err := goconfig.LoadConfigFile(filePath)
-	if err != nil {
-		log.Fatal("can not load config")
-	}
-	return cfg
-}
 
 func connActiveMq(host, port string) (stompConn *stomp.Conn) {
 	stompConn, err := stomp.Dial("tcp", net.JoinHostPort(host, port))
@@ -49,7 +42,7 @@ func acticeCustomer(queue string, conn *stomp.Conn) {
 
 func main() {
 	filePath := "config.ini"
-	cfg := getConfigFile(filePath)
+	cfg := readconfig.GetConfigFile(filePath)
 
 	host, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "host")
 	if err != nil {
