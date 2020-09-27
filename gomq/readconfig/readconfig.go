@@ -10,7 +10,7 @@ import (
 func GetConfigFile(filePath string) (configFile *goconfig.ConfigFile) {
 	cfg, err := goconfig.LoadConfigFile(filePath)
 	if err != nil {
-		log.Fatal("can not load config")
+		log.Fatal("can not load config,error:", err)
 	}
 	return cfg
 }

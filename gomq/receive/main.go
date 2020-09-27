@@ -5,9 +5,10 @@ import (
 	"log"
 	"net"
 	"os"
+	"strconv"
 	"time"
 
-	"github.com/oisnow/gobible/gomq/readconfig"
+	"gobible/gomq/readconfig"
 
 	"github.com/Unknwon/goconfig"
 	"github.com/go-stomp/stomp"
@@ -23,7 +24,7 @@ func connActiveMq(host, port string) (stompConn *stomp.Conn) {
 	return stompConn
 }
 
-func acticeCustomer(queue string, conn *stomp.Conn) {
+func acticeCustomer(queue string, conn *stomp.Conn, timeout time.Duration) {
 	for {
 		sub, _ := conn.Subscribe(queue, stomp.AckMode(stomp.AckAuto))
 		for {
@@ -33,7 +34,7 @@ func acticeCustomer(queue string, conn *stomp.Conn) {
 				//the 'v.body' type is []byte Convert string
 				fmt.Println(string(v.Body))
 
-			case <-time.After(time.Second * 100):
+			case <-time.After(time.Second * timeout):
 				return
 			}
 		}
@@ -41,7 +42,7 @@ func acticeCustomer(queue string, conn *stomp.Conn) {
 }
 
 func main() {
-	filePath := "config.ini"
+	filePath := "../config/config.ini"
 	cfg := readconfig.GetConfigFile(filePath)
 
 	host, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "host")
@@ -62,8 +63,15 @@ func main() {
 		os.Exit(1)
 	}
 
+	timeout, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "timeout")
+	if err != nil {
+		log.Fatalf("can not get value（%s）：%s", "key_default", err)
+		os.Exit(1)
+	}
+
 	activeMq := connActiveMq(host, port)
 	defer activeMq.Disconnect()
-	acticeCustomer(queue, activeMq)
+	timeoutint, err := strconv.Atoi(timeout)
+	acticeCustomer(queue, activeMq, time.Duration(timeoutint))
 
 }

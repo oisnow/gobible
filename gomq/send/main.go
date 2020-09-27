@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"gobible/gomq/readconfig"
+	"log"
 	"net"
 	"os"
 	"strconv"
+
+	"github.com/Unknwon/goconfig"
 
 	"github.com/go-stomp/stomp"
 )
@@ -30,9 +34,27 @@ func activeMqProducer(c chan string, queue string, conn *stomp.Conn) {
 }
 
 func main() {
-	host := "127.0.0.1"
-	port := "61613"
-	queue := "gomq"
+
+	filePath := "../config/config.ini"
+	cfg := readconfig.GetConfigFile(filePath)
+
+	host, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "host")
+	if err != nil {
+		log.Fatalf("can not get value（%s）：%s", "key_default", err)
+		os.Exit(1)
+	}
+
+	port, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "port")
+	if err != nil {
+		log.Fatalf("can not get value（%s）：%s", "key_default", err)
+		os.Exit(1)
+	}
+
+	queue, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "queue")
+	if err != nil {
+		log.Fatalf("can not get value（%s）：%s", "key_default", err)
+		os.Exit(1)
+	}
 
 	activeMq := connActiveMq(host, port)
 	defer activeMq.Disconnect()
