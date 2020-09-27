@@ -9,15 +9,6 @@ import (
 	"github.com/go-stomp/stomp"
 )
 
-func getConfigFile(filePath string) (configFile *goconfig.ConfigFile) {
-	configFile, err := goconfig.LoadConfigFile(filePath)
-	if err != nil {
-		fmt.Println("load config file error: " + err.Error())
-		os.Exit(1)
-	}
-	return configFile
-}
-
 func connActiveMq(host, port string) (stompConn *stomp.Conn) {
 	stompConn, err := stomp.Dial("tcp", net.JoinHostPort(host, port))
 	if err != nil {
