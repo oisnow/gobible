@@ -7,6 +7,7 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/Unknwon/goconfig"
 
@@ -56,14 +57,22 @@ func main() {
 		os.Exit(1)
 	}
 
+	quelen, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "quelen")
+	if err != nil {
+		log.Fatalf("can not get value（%s）：%s", "key_default", err)
+		os.Exit(1)
+	}
+
+	fmt.Print("host,port,queue", host, port, queue)
+
 	activeMq := connActiveMq(host, port)
 	defer activeMq.Disconnect()
 	c := make(chan string)
 	go activeMqProducer(c, queue, activeMq)
-
-	for i := 0; i <= 2; i++ {
+	quelens, err := strconv.Atoi(quelen)
+	for i := 0; i <= quelens; i++ {
 
 		c <- "hello world" + strconv.Itoa(i)
 	}
-
+	time.Sleep(time.Second * 10)
 }
