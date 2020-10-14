@@ -43,5 +43,6 @@ func main() {
 	sword1 := sword{attacker: attacker{apower: 9,
 		hp: 120}, color: "green"}
 	wielder(gun1)
-	wielder(sword1)
+	isno := wielder(sword1)
+	fmt.Println(isno)
 }
