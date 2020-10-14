@@ -4,6 +4,8 @@ go 1.14
 
 require (
 	github.com/Unknwon/goconfig v0.0.0-20200908083735-df7de6a44db8
+	github.com/cloudnativego/hello v0.0.0-20160515152417-069f5e13f001 // indirect
+	github.com/codegangsta/negroni v1.0.0 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.0 // indirect
 	github.com/go-stomp/stomp v2.0.6+incompatible

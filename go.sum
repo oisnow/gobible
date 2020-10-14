@@ -4,6 +4,10 @@ github.com/Unknwon/goconfig v0.0.0-20200908083735-df7de6a44db8 h1:1TrMV1HmBApBbM
 github.com/Unknwon/goconfig v0.0.0-20200908083735-df7de6a44db8/go.mod h1:wngxua9XCNjvHjDiTiV26DaKDT+0c63QR6H5hjVUUxw=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
+github.com/cloudnativego/hello v0.0.0-20160515152417-069f5e13f001 h1:o0M4CN+C7zpaUIzCqpwaApQJ/EEp9xAE9J1hL/ixz+c=
+github.com/cloudnativego/hello v0.0.0-20160515152417-069f5e13f001/go.mod h1:N30sZfhrat8CRgPRuSD+wSySnzpfaVb2IuTVcjWLO2k=
+github.com/codegangsta/negroni v1.0.0 h1:+aYywywx4bnKXWvoWtRfJ91vC59NbEhEY03sZjQhbVY=
+github.com/codegangsta/negroni v1.0.0/go.mod h1:v0y3T5G7Y1UlFfyxFn/QLRU4a2EuNau2iZY63YTKWo0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
