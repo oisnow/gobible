@@ -16,6 +16,7 @@ import (
 
 func connActiveMq(host, port string) (stompConn *stomp.Conn) {
 	stompConn, err := stomp.Dial("tcp", net.JoinHostPort(host, port))
+	fmt.Println("connect:", host, port)
 	if err != nil {
 		fmt.Println("connect to active_mq server service, error: " + err.Error())
 		os.Exit(1)
@@ -42,7 +43,7 @@ func acticeCustomer(queue string, conn *stomp.Conn, timeout time.Duration) {
 }
 
 func main() {
-	filePath := "../config/config.ini"
+	filePath := "gomq/config/config.ini"
 	cfg := readconfig.GetConfigFile(filePath)
 
 	host, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "host")

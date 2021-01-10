@@ -36,7 +36,7 @@ func activeMqProducer(c chan string, queue string, conn *stomp.Conn) {
 
 func main() {
 
-	filePath := "../config/config.ini"
+	filePath := "gomq/config/config.ini"
 	cfg := readconfig.GetConfigFile(filePath)
 
 	host, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "host")
@@ -74,5 +74,5 @@ func main() {
 
 		c <- "hello world" + strconv.Itoa(i)
 	}
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 1)
 }
